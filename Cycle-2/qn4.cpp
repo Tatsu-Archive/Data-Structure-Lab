@@ -91,3 +91,12 @@ int main()
     printarray(arr, n);
     return 0;
 }
+
+/*
+Input
+Enter the number of elements: 5
+Enter the elements: 12 2 1 5 8
+Output
+Unsorted array: 12 2 1 5 8
+Sorted array: 1 2 5 8 12
+*/

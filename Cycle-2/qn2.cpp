@@ -47,3 +47,12 @@ int main()
     printarray(arr, n);
     return 0;
 }
+
+/*
+Input
+Enter the number of elements: 5
+Enter the elements: 6 7 4 2 9
+Output
+Unsorted array: 6 7 4 2 9
+Sorted array: 2 4 6 7 9
+*/

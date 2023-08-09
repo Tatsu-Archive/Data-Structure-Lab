@@ -51,3 +51,12 @@ int main()
     printarray(arr, n);
     return 0;
 }
+
+/*
+Input
+Enter the number of elements: 9
+Enter the elements: one picture is worth more than ten thousand words
+Output
+Unsorted array: one picture is worth more than ten thousand words
+Sorted array: is more one picture ten than thousand words worth
+*/

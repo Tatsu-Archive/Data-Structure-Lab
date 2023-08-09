@@ -50,3 +50,12 @@ int main()
     printarray(arr, n);
     return 0;
 }
+
+/*
+Input           
+Enter the number of elements: 5
+Enter the elements: 5 4 3 2 1
+Output
+Unsorted array: 5 4 3 2 1
+Sorted array: 1 2 3 4 5        
+*/
