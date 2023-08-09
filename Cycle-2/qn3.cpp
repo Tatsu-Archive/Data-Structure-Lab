@@ -3,7 +3,6 @@ using namespace std;
 
 void selectionSort(string arr[], int n)
 {
-    string temp;
     for(int i=0; i<n-1; i++)
     {
         int min=i;
@@ -14,7 +13,7 @@ void selectionSort(string arr[], int n)
                 min=j;
             }
         }
-        temp=arr[min];
+        string temp=arr[min];
         arr[min]=arr[i];
         arr[i]=temp;
     }
@@ -26,6 +25,7 @@ void printarray(string arr[], int n)
     {
         cout<<arr[i]<<" ";
     }
+    cout<<endl;
 }
 
 void getarray(string arr[], int n)

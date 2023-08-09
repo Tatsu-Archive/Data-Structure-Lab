@@ -1,15 +1,12 @@
-/*Implement the merge sort algorithm, to sort an array of positive integers in the ascending
-order.*/
-
 #include<iostream>
 using namespace std;
 
-void merge(int arr[], int l, int m, int r)
+void merge(float arr[], int l, int m, int r)
 {
     int i, j, k;
     int n1=m-l+1;
     int n2=r-m;
-    int L[n1], R[n2];
+    float L[n1], R[n2];
     for(i=0; i<n1; i++)
     {
         L[i]=arr[l+i];
@@ -49,7 +46,7 @@ void merge(int arr[], int l, int m, int r)
     }
 }
 
-void mergeSort(int arr[], int l, int r)
+void mergeSort(float arr[], int l, int r)
 {
     if(l<r)
     {
@@ -60,7 +57,7 @@ void mergeSort(int arr[], int l, int r)
     }
 }
 
-void printarray(int arr[], int n)
+void printarray(float arr[], int n)
 {
     for(int i=0; i<n; i++)
     {
@@ -68,12 +65,13 @@ void printarray(int arr[], int n)
     }
 }
 
-void getarray(int arr[], int n)
+void getarray(float arr[], int n)
 {
     for(int i=0; i<n; i++)
     {
         cin>>arr[i];
     }
+    cout<<endl;
 }
 
 int main()
@@ -81,7 +79,7 @@ int main()
     int n;
     cout<<"Enter the number of elements: ";
     cin>>n;
-    int arr[n];
+    float arr[n];
     cout<<"Enter the elements: ";
     getarray(arr, n);
     cout<<"Unsorted array: ";

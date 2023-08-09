@@ -22,6 +22,7 @@ void printarray(int arr[], int n)
     {
         cout<<arr[i]<<" ";
     }
+    cout<<endl;
 }
 
 void getarray(int arr[], int n)
