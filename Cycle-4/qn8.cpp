@@ -7,6 +7,10 @@ class HashTable{
     int hash(int key){
         return key % size;
     }
+
+    int hash2(int key){
+        return 7 - (key % 7);
+    }
 public:
     HashTable(int size){
         this->size = size;
@@ -33,7 +37,7 @@ void HashTable::insert(int key){
     }
     int i = 1;
     while(true){
-        int newIndex = (index + i) % size;
+        int newIndex = (index + i*hash2(key)) % size;
         if(arr[newIndex] == -1){
             arr[newIndex] = key;
             return;
@@ -50,13 +54,9 @@ void HashTable::search(int key){
     }
     int i = 1;
     while(true){
-        int newIndex = (index + i) % size;
+        int newIndex = (index + i*hash2(key)) % size;
         if(arr[newIndex] == key){
             cout << "Key found at index " << newIndex << endl;
-            return;
-        }
-        if(arr[newIndex] == -1){
-            cout << "Key not found" << endl;
             return;
         }
         i++;
@@ -71,13 +71,9 @@ void HashTable::del(int key){
     }
     int i = 1;
     while(true){
-        int newIndex = (index + i) % size;
+        int newIndex = (index + i*hash2(key)) % size;
         if(arr[newIndex] == key){
             arr[newIndex] = -1;
-            return;
-        }
-        if(arr[newIndex] == -1){
-            cout << "Key not found" << endl;
             return;
         }
         i++;
@@ -91,12 +87,13 @@ void HashTable::display(){
 }
 
 int main(){
-    int size, choice, key;
+    int size;
     cout << "Enter size of hash table: ";
     cin >> size;
     HashTable ht(size);
+    int choice, key;
     while(true){
-        cout << "1. Insert\n2. Search\n3. Delete\n4. Display\n5. Exit\nEnter your choice: ";
+        cout << "1. Insert\n2. Search\n3. Delete\n4. Display\n5. Exit\nEnter choice: ";
         cin >> choice;
         switch(choice){
             case 1:
@@ -128,33 +125,39 @@ int main(){
 
 /*
 Output
-Enter size of hash table: 5
+Enter size of hash table: 10
 1. Insert
 2. Search
 3. Delete
 4. Display
 5. Exit
-Enter your choice: 1
-Enter key to insert: 1
-Enter your choice: 1
-Enter key to insert: 8
-Enter your choice: 1
-Enter key to insert: 6
-Enter your choice: 1
+Enter choice: 1
+Enter key to insert: 5
+Enter choice: 1
 Enter key to insert: 3
-Enter your choice: 1
-Enter key to insert: 4
-Enter your choice: 4
--1 1 6 3 4
-Enter your choice: 2
-Enter key to search: 6
-Key found at index 2
-Enter your choice: 2
-Enter key to search: 5
-Key not found
-Enter your choice: 3
-Enter key to delete: 6
-Enter your choice: 4
--1 1 -1 3 4
-Enter your choice: 5
+Enter choice: 1
+Enter key to insert: 7
+Enter choice: 1
+Enter key to insert: 9
+Enter choice: 1
+Enter key to insert: 11
+Enter choice: 1
+Enter key to insert: 13
+Enter choice: 1
+Enter key to insert: 15
+Enter choice: 1
+Enter key to insert: 17
+Enter choice: 4
+-1 1 3 -1 5 7 9 11 13 15
+Enter choice: 2
+Enter key to search: 7
+Key found at index 5
+Enter choice: 2
+Enter key to search: 8
+Key found at index 6
+Enter choice: 3
+Enter key to delete: 7
+Enter choice: 4
+-1 1 3 -1 5 -1 9 11 13 15
+Enter choice: 5
 */

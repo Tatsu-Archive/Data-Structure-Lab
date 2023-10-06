@@ -1,8 +1,20 @@
-#include<iostream>
+// Implement a hash table using Linked List with separate chaining with the following operations : INSERT(key), DELETE(key), SEARCH(key).
+
+
+#include <iostream>
 using namespace std;
 
+struct Node{
+    int data;
+    Node *next;
+    Node(int data){
+        this->data = data;
+        next = NULL;
+    }
+};
+
 class HashTable{
-    int *arr;
+    Node **arr;
     int size;
     int hash(int key){
         return key % size;
@@ -10,12 +22,20 @@ class HashTable{
 public:
     HashTable(int size){
         this->size = size;
-        arr = new int[size];
+        arr = new Node*[size];
         for(int i = 0; i < size; i++)
-            arr[i] = -1;
+            arr[i] = NULL;
     }
     
     ~HashTable(){
+        for(int i = 0; i < size; i++){
+            Node *temp = arr[i];
+            while(temp != NULL){
+                Node *temp2 = temp;
+                temp = temp->next;
+                delete temp2;
+            }
+        }
         delete[] arr;
     }
 
@@ -27,67 +47,59 @@ public:
 
 void HashTable::insert(int key){
     int index = hash(key);
-    if(arr[index] == -1){
-        arr[index] = key;
+    if(arr[index] == NULL){
+        arr[index] = new Node(key);
         return;
     }
-    int i = 1;
-    while(true){
-        int newIndex = (index + i) % size;
-        if(arr[newIndex] == -1){
-            arr[newIndex] = key;
-            return;
-        }
-        i++;
-    }
+    Node *temp = arr[index];
+    while(temp->next != NULL)
+        temp = temp->next;
+    temp->next = new Node(key);
 }
 
 void HashTable::search(int key){
     int index = hash(key);
-    if(arr[index] == key){
-        cout << "Key found at index " << index << endl;
-        return;
-    }
-    int i = 1;
-    while(true){
-        int newIndex = (index + i) % size;
-        if(arr[newIndex] == key){
-            cout << "Key found at index " << newIndex << endl;
+    Node *temp = arr[index];
+    while(temp != NULL){
+        if(temp->data == key){
+            cout << "Key found at index " << index << endl;
             return;
         }
-        if(arr[newIndex] == -1){
-            cout << "Key not found" << endl;
-            return;
-        }
-        i++;
+        temp = temp->next;
     }
+    cout << "Key not found" << endl;
 }
 
 void HashTable::del(int key){
     int index = hash(key);
-    if(arr[index] == key){
-        arr[index] = -1;
+    Node *temp = arr[index];
+    if(temp->data == key){
+        arr[index] = temp->next;
+        delete temp;
         return;
     }
-    int i = 1;
-    while(true){
-        int newIndex = (index + i) % size;
-        if(arr[newIndex] == key){
-            arr[newIndex] = -1;
+    while(temp->next != NULL){
+        if(temp->next->data == key){
+            Node *temp2 = temp->next;
+            temp->next = temp->next->next;
+            delete temp2;
             return;
         }
-        if(arr[newIndex] == -1){
-            cout << "Key not found" << endl;
-            return;
-        }
-        i++;
+        temp = temp->next;
     }
+    cout << "Key not found" << endl;
 }
 
 void HashTable::display(){
-    for(int i = 0; i < size; i++)
-        cout << arr[i] << " ";
-    cout << endl;
+    for(int i = 0; i < size; i++){
+        cout << i << ": ";
+        Node *temp = arr[i];
+        while(temp != NULL){
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
 }
 
 int main(){
@@ -128,33 +140,44 @@ int main(){
 
 /*
 Output
-Enter size of hash table: 5
+Enter size of hash table: 10
 1. Insert
 2. Search
 3. Delete
 4. Display
 5. Exit
 Enter your choice: 1
-Enter key to insert: 1
-Enter your choice: 1
-Enter key to insert: 8
-Enter your choice: 1
-Enter key to insert: 6
+Enter key to insert: 5
 Enter your choice: 1
 Enter key to insert: 3
 Enter your choice: 1
-Enter key to insert: 4
+Enter key to insert: 7
 Enter your choice: 4
--1 1 6 3 4
-Enter your choice: 2
-Enter key to search: 6
-Key found at index 2
+0:
+1:
+2:
+3: 3
+4:
+5: 5
+6:
+7: 7
+8:
+9:
 Enter your choice: 2
 Enter key to search: 5
-Key not found
+Key found at index 5
 Enter your choice: 3
-Enter key to delete: 6
+Enter key to delete: 5
 Enter your choice: 4
--1 1 -1 3 4
+0:
+1:
+2:
+3: 3
+4:
+5:
+6:
+7: 7
+8:
+9:
 Enter your choice: 5
 */

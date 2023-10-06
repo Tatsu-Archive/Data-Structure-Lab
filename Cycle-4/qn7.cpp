@@ -33,7 +33,7 @@ void HashTable::insert(int key){
     }
     int i = 1;
     while(true){
-        int newIndex = (index + i) % size;
+        int newIndex = (index + i*i) % size;
         if(arr[newIndex] == -1){
             arr[newIndex] = key;
             return;
@@ -50,13 +50,9 @@ void HashTable::search(int key){
     }
     int i = 1;
     while(true){
-        int newIndex = (index + i) % size;
+        int newIndex = (index + i*i) % size;
         if(arr[newIndex] == key){
             cout << "Key found at index " << newIndex << endl;
-            return;
-        }
-        if(arr[newIndex] == -1){
-            cout << "Key not found" << endl;
             return;
         }
         i++;
@@ -71,13 +67,9 @@ void HashTable::del(int key){
     }
     int i = 1;
     while(true){
-        int newIndex = (index + i) % size;
+        int newIndex = (index + i*i) % size;
         if(arr[newIndex] == key){
             arr[newIndex] = -1;
-            return;
-        }
-        if(arr[newIndex] == -1){
-            cout << "Key not found" << endl;
             return;
         }
         i++;
@@ -100,17 +92,17 @@ int main(){
         cin >> choice;
         switch(choice){
             case 1:
-                cout << "Enter key to insert: ";
+                cout << "Enter key: ";
                 cin >> key;
                 ht.insert(key);
                 break;
             case 2:
-                cout << "Enter key to search: ";
+                cout << "Enter key: ";
                 cin >> key;
                 ht.search(key);
                 break;
             case 3:
-                cout << "Enter key to delete: ";
+                cout << "Enter key: ";
                 cin >> key;
                 ht.del(key);
                 break;
@@ -118,7 +110,7 @@ int main(){
                 ht.display();
                 break;
             case 5:
-                exit(0);
+                return 0;
             default:
                 cout << "Invalid choice" << endl;
         }
@@ -135,26 +127,23 @@ Enter size of hash table: 5
 4. Display
 5. Exit
 Enter your choice: 1
-Enter key to insert: 1
+Enter key: 5
 Enter your choice: 1
-Enter key to insert: 8
+Enter key: 3
 Enter your choice: 1
-Enter key to insert: 6
+Enter key: 7
 Enter your choice: 1
-Enter key to insert: 3
+Enter key: 1
 Enter your choice: 1
-Enter key to insert: 4
+Enter key: 8
 Enter your choice: 4
--1 1 6 3 4
+-1 1 3 -1 5
 Enter your choice: 2
-Enter key to search: 6
+Enter key: 3
 Key found at index 2
-Enter your choice: 2
-Enter key to search: 5
-Key not found
 Enter your choice: 3
-Enter key to delete: 6
+Enter key: 3
 Enter your choice: 4
--1 1 -1 3 4
+-1 1 -1 -1 5
 Enter your choice: 5
 */

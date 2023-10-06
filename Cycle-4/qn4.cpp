@@ -1,6 +1,3 @@
-/*Implement a circular queue using array with the following operations : ENQUEUE,
-DEQUEUE, ISEMPTY, SIZE()*/
-
 #include<iostream>
 using namespace std;
 
@@ -88,53 +85,66 @@ public:
 
 int main()
 {
-    Queue q(5);
-
-    q.enQueue(14);
-    q.enQueue(22);
-    q.enQueue(13);
-    q.enQueue(-6);
-
-    q.displayQueue();
-
-    cout << "Deleted value = " << q.deQueue() << endl;
-    cout << "Deleted value = " << q.deQueue() << endl;
-
-    q.displayQueue();
-
-    q.enQueue(9);
-    q.enQueue(20);
-    q.enQueue(5);
-
-    q.displayQueue();
-
-    q.enQueue(20);
+    int choice, value, size;
+    cout << "Enter the size of the queue: ";
+    cin >> size;
+    Queue q(size);
+    while (1)
+    {
+        cout << "1. Enqueue\n2. Dequeue\n3. Display\n4. Size\n5. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter the value to be inserted: ";
+            cin >> value;
+            q.enQueue(value);
+            break;
+        case 2:
+            value = q.deQueue();
+            if (value != -1)
+                cout << "Deleted value = " << value << endl;
+            break;
+        case 3:
+            q.displayQueue();
+            break;
+        case 4:
+            cout << "Size of Queue = " << q.queueSize() << endl;
+            break;
+        case 5:
+            exit(0);
+        default:
+            cout << "Wrong choice" << endl;
+        }
+    }
     return 0;
 }
 
-/*Input
-14
-22
-13
--6
+/*
 Output
-Inserted 14
-Inserted 22
-Inserted 13
-Inserted -6
-Front -> 0
-Items -> 14 22 13 -6
-Rear -> 3
-Deleted value = 14
-Deleted value = 22
-Front -> 2
-Items -> 13 -6
-Rear -> 3
-Inserted 9
-Inserted 20
+Enter the size of the queue: 5
+1. Enqueue
+2. Dequeue
+3. Display
+4. Size
+5. Exit
+Enter your choice: 1
+Enter the value to be inserted: 5
 Inserted 5
-Front -> 2
-Items -> 13 -6 9 20 5
-Rear -> 1
-Queue is full
+Enter your choice: 1
+Enter the value to be inserted: 9
+Inserted 9
+Enter your choice: 1
+Enter the value to be inserted: 7
+Inserted 7
+Enter your choice: 2
+Deleted value = 5
+Enter your choice: 3
+Front -> 1
+Items -> 9 7
+Rear -> 2
+Enter your choice: 4
+Size of Queue = 2
+Enter your choice: 5
 */

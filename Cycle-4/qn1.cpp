@@ -98,7 +98,8 @@ int main(){
     return 0;
 }
 
-/*Input
+/*
+Output
 Enter the size of the stack: 5
 1. Push
 2. Pop

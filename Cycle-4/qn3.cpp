@@ -70,13 +70,70 @@ public:
 };
 
 int main(){ //menu driven
-    Queue obj(5);
-    int choice, data;
-    
+    int size, choice, data;
+    cout << "Enter the size of the queue: ";
+    cin >> size;    
+    Queue q(size);
+    while (1)
+    {
+        cout << "1. Enqueue" << endl;
+        cout << "2. Dequeue" << endl;
+        cout << "3. Display" << endl;
+        cout << "4. Size of Queue" << endl;
+        cout << "5. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter the data: ";
+            cin >> data;
+            q.enqueue(data);
+            break;
+        case 2:
+            q.dequeue();
+            break;
+        case 3:
+            q.display();
+            break;
+        case 4:
+            cout << "Size of Queue: " << q.sizeOfQueue() << endl;
+            break;
+        case 5:
+            exit(0);
+        default:
+            cout << "Invalid Choice" << endl;
+        }
+    }
     return 0;
 
 }
 
-/*Input
-
+/*
+Output
+Enter the size of the queue: 5
+1. Enqueue
+2. Dequeue
+3. Display
+4. Size of Queue
+5. Exit
+Enter your choice: 1
+Enter the data: 9
+Enter your choice: 1
+Enter the data: 20
+Enter your choice: 1
+Enter the data: 11
+Enter your choice: 1
+Enter the data: 5
+Enter your choice: 1
+Enter the data: 4
+Enter your choice: 3
+9 20 11 5 4
+Enter your choice: 2
+Dequeued Element: 9
+Enter your choice: 3
+20 11 5 4
+Enter your choice: 4
+Size of Queue: 4
+Enter your choice: 5
 */
