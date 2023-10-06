@@ -1,5 +1,3 @@
-/*Implement a queue using array with the following operations : ENQUEUE, DEQUEUE,ISEMPTY, SIZE()*/
-
 #include<iostream>
 using namespace std;
 
@@ -71,40 +69,14 @@ public:
 
 };
 
-int main(){
-    Queue q(5);
-    q.enqueue(10);
-    q.enqueue(20);
-    q.enqueue(30);
-    q.enqueue(40);
-    cout <<"\n";
-    q.display();
-    cout <<"\n";
-    q.dequeue();
-    q.dequeue();
-    q.dequeue();
-    q.dequeue();
-    q.dequeue();
-    cout << "Size of Queue: " << q.sizeOfQueue() << endl;
-    cout << "Is Queue Empty: " << q.isEmpty() << endl;
+int main(){ //menu driven
+    Queue obj(5);
+    int choice, data;
+    
     return 0;
 
 }
 
 /*Input
-5
-10
-20
-30
-40
 
-10 20 30 40
-Dequeued Element: 10
-Dequeued Element: 20
-Dequeued Element: 30
-Dequeued Element: 40
-Queue Underflow
-
-Size of Queue: 0
-Is Queue Empty: 1
 */

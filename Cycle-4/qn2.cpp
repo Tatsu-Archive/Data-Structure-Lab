@@ -1,6 +1,3 @@
-/*Implement a stack using Linked List with the following operations : PUSH, POP, ISEMPTY, SIZE()*/
-
-
 #include <iostream>
 using namespace std;
 
@@ -77,34 +74,74 @@ public:
     }
 };
 
-int main(){
+int main(){ //menu driven
     Node *head = NULL;
     Node obj(0);
-    obj.push(&head, 6);
-    obj.push(&head, 2);
-    obj.push(&head, 8);
-    obj.push(&head, 1);
-    cout <<"\n";
-    obj.display(&head);
-    cout <<"\n";
-    obj.pop(&head);
-    cout <<"\n";
-    obj.display(&head);
-    cout <<"\n";
-    cout << "Size of Stack: " << obj.sizeOfStack(&head) << endl;
-    cout << "Is Stack Empty: " << obj.isEmpty(&head) << endl;
+    int choice, data;
+    while (1)
+    {
+        cout << "1. Push" << endl;
+        cout << "2. Pop" << endl;
+        cout << "3. Is Empty" << endl;
+        cout << "4. Size of Stack" << endl;
+        cout << "5. Display" << endl;
+        cout << "6. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter data: ";
+            cin >> data;
+            obj.push(&head, data);
+            break;
+        case 2:
+            obj.pop(&head);
+            break;
+        case 3:
+            if (obj.isEmpty(&head))
+                cout << "Stack is Empty" << endl;
+            else
+                cout << "Stack is not Empty" << endl;
+            break;
+        case 4:
+            cout << "Size of Stack: " << obj.sizeOfStack(&head) << endl;
+            break;
+        case 5:
+            obj.display(&head);
+            break;
+        case 6:
+            exit(0);
+        default:
+            cout << "Invalid Choice" << endl;
+        }
+    }
     return 0;
 }
 
 /*Input
-6
-2
-8
-1
-Popped Element: 1
-8
-2
-6
-Size of Stack: 3
-Is Stack Empty: 0
+1. Push
+2. Pop
+3. Is Empty
+4. Size of Stack
+5. Display
+6. Exit
+
+Enter your choice: 1
+Enter data: 5
+Enter your choice: 1
+Enter data: 1
+Enter your choice: 1
+Enter data: 9
+Enter your choice: 5
+9 1 5 
+Enter your choice: 2
+Popped Element: 9
+Enter your choice: 5
+1 5
+Enter your choice: 3
+Stack is not Empty
+Enter your choice: 4
+Size of Stack: 2
+Enter your choice: 6
 */

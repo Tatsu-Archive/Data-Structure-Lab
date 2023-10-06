@@ -65,28 +65,60 @@ public:
 };
 
 int main(){
-    Stack s(10);
-    s.push(4);
-    s.push(5);
-    s.push(6);
-    s.push(7);
-    s.display();
-    s.pop();
-    s.display();
-    cout << "Size of Stack: " << s.sizeOfStack() << endl;
-    cout << "Is Stack Empty: " << s.isEmpty() << endl;
+    int size, choice, data;
+    cout << "Enter the size of the stack: ";
+    cin >> size;
+    Stack s(size);
+    while (1)
+    {
+        cout << "1. Push\n2. Pop\n3. Display\n4. Size of Stack\n5. Exit\nEnter your choice: ";
+        cin >> choice;
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter the data: ";
+            cin >> data;
+            s.push(data);
+            break;
+        case 2:
+            s.pop();
+            break;
+        case 3:
+            s.display();
+            break;
+        case 4:
+            cout << "Size of Stack: " << s.sizeOfStack() << endl;
+            break;
+        case 5:
+            exit(0);
+        default:
+            cout << "Invalid Choice" << endl;
+        }
+    }
     return 0;
 }
 
 /*Input
-4
-5
-6
-7
-Output
-7 6 5 4
-Popped Element: 7
-6 5 4
+Enter the size of the stack: 5
+1. Push
+2. Pop
+3. Display
+4. Size of Stack
+5. Exit
+Enter your choice: 1
+Enter the data: 5
+Enter your choice: 1
+Enter the data: 1
+Enter your choice: 1
+Enter the data: 9
+Enter your choice: 1
+Enter the data: 3
+Enter your choice: 3
+3 9 1 5
+Enter your choice: 2
+Popped Element: 3
+Enter your choice: 3
+9 1 5
+Enter your choice: 4
 Size of Stack: 3
-Is Stack Empty: 0
 */
